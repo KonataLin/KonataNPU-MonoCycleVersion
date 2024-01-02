@@ -9,7 +9,7 @@ import com.konatalin.npu.KonataCore
  * @author Konata_Lin
  * @version 1.0.0-SNAPSHOT
  */
-abstract class KonataInstruction extends Module {
+abstract class KonataInstruction(registerGroup: Vec[UInt]) extends Module {
   val io = IO(new InstructionIO)
 }
 class InstructionIO extends Bundle {
@@ -18,5 +18,12 @@ class InstructionIO extends Bundle {
   val rd = Input(UInt(KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH.W))
   val imm = Input(UInt(KonataCore.REGISTER_WIDTH.W))
 
+
+  /**
+   * 需要反馈的：结果/目标寄存器/跳跃地址（均为可选项）
+   */
   val result = Output(UInt(32.W))
+  val targetRegister = Output(UInt(32.W))
+  val jmp = Output(Bool())
+  val nextPC = Output(UInt(KonataCore.ADDRESS_WIDTH.W))
 }

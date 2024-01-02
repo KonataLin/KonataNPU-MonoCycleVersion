@@ -14,9 +14,10 @@ object KonataInstructionCenter {
   var hashMap = mutable.HashMap[InstructionBag,KonataInstruction]()
   def registerInstruction(instructionType: InstructionType, pattern : String
                           , instruction : KonataInstruction): Unit = {
+    val patternNew = pattern.replace(" ", "")
     val bag = new InstructionBag
     bag.instructionType = instructionType
-    bag.pattern = pattern
+    bag.pattern = patternNew
 
     hashMap.put(bag, instruction)
   }

@@ -1,0 +1,201 @@
+module Addi(
+  input  [4:0]  io_rs1, // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\KonataInstruction.scala 13:14]
+  input  [4:0]  io_rd, // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\KonataInstruction.scala 13:14]
+  input  [31:0] io_imm, // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\KonataInstruction.scala 13:14]
+  output [31:0] io_result, // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\KonataInstruction.scala 13:14]
+  output [31:0] io_targetRegister // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\KonataInstruction.scala 13:14]
+);
+  wire [31:0] _GEN_0 = {{27'd0}, io_rs1}; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\subcmd\\Addi.scala 6:26]
+  assign io_result = _GEN_0 + io_imm; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\subcmd\\Addi.scala 6:26]
+  assign io_targetRegister = {{27'd0}, io_rd}; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\subcmd\\Addi.scala 7:24]
+endmodule
+module Cpu(
+  input         clock,
+  input         reset,
+  input  [31:0] io_inst // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 23:17]
+);
+`ifdef RANDOMIZE_REG_INIT
+  reg [31:0] _RAND_0;
+  reg [31:0] _RAND_1;
+  reg [31:0] _RAND_2;
+  reg [31:0] _RAND_3;
+  reg [31:0] _RAND_4;
+  reg [31:0] _RAND_5;
+  reg [31:0] _RAND_6;
+`endif // RANDOMIZE_REG_INIT
+  wire [4:0] Addi_io_rs1; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+  wire [4:0] Addi_io_rd; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+  wire [31:0] Addi_io_imm; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+  wire [31:0] Addi_io_result; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+  wire [31:0] Addi_io_targetRegister; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+  reg [31:0] registerGroup_0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_1; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_2; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_3; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_4; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_5; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  reg [31:0] registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+  wire [31:0] _GEN_1 = 3'h1 == io_inst[17:15] ? registerGroup_1 : registerGroup_0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_2 = 3'h2 == io_inst[17:15] ? registerGroup_2 : _GEN_1; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_3 = 3'h3 == io_inst[17:15] ? registerGroup_3 : _GEN_2; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_4 = 3'h4 == io_inst[17:15] ? registerGroup_4 : _GEN_3; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_5 = 3'h5 == io_inst[17:15] ? registerGroup_5 : _GEN_4; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_6 = 3'h6 == io_inst[17:15] ? registerGroup_6 : _GEN_5; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:{22,22}]
+  wire [31:0] _GEN_15 = 3'h1 == io_inst[9:7] ? registerGroup_1 : registerGroup_0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [31:0] _GEN_16 = 3'h2 == io_inst[9:7] ? registerGroup_2 : _GEN_15; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [31:0] _GEN_17 = 3'h3 == io_inst[9:7] ? registerGroup_3 : _GEN_16; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [31:0] _GEN_18 = 3'h4 == io_inst[9:7] ? registerGroup_4 : _GEN_17; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [31:0] _GEN_19 = 3'h5 == io_inst[9:7] ? registerGroup_5 : _GEN_18; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [31:0] _GEN_20 = 3'h6 == io_inst[9:7] ? registerGroup_6 : _GEN_19; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:{21,21}]
+  wire [19:0] _T_8 = io_inst[31] ? 20'hfffff : 20'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 49:38]
+  wire [31:0] _T_11 = io_inst & 32'h707f; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:25]
+  wire [31:0] _GEN_29 = 3'h1 == Addi_io_result[2:0] ? registerGroup_1 : registerGroup_0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:{58,58}]
+  wire [31:0] _GEN_30 = 3'h2 == Addi_io_result[2:0] ? registerGroup_2 : _GEN_29; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:{58,58}]
+  wire [31:0] _GEN_31 = 3'h3 == Addi_io_result[2:0] ? registerGroup_3 : _GEN_30; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:{58,58}]
+  wire [31:0] _GEN_32 = 3'h4 == Addi_io_result[2:0] ? registerGroup_4 : _GEN_31; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:{58,58}]
+  wire [31:0] _GEN_33 = 3'h5 == Addi_io_result[2:0] ? registerGroup_5 : _GEN_32; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:{58,58}]
+  Addi Addi ( // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\instructions\\RegisterTree.scala 17:26]
+    .io_rs1(Addi_io_rs1),
+    .io_rd(Addi_io_rd),
+    .io_imm(Addi_io_imm),
+    .io_result(Addi_io_result),
+    .io_targetRegister(Addi_io_targetRegister)
+  );
+  assign Addi_io_rs1 = _GEN_6[4:0]; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 32:22]
+  assign Addi_io_rd = _GEN_20[4:0]; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 38:21]
+  assign Addi_io_imm = {_T_8,io_inst[31:20]}; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 49:33]
+  always @(posedge clock) begin
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_0 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h0 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_0 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_0 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_1 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h1 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_1 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_1 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_2 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h2 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_2 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_2 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_3 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h3 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_3 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_3 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_4 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h4 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_4 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_4 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_5 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h5 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (3'h6 == Addi_io_result[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_5 <= registerGroup_6; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        end else begin
+          registerGroup_5 <= _GEN_33;
+        end
+      end
+    end
+    if (reset) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+      registerGroup_6 <= 32'h0; // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 24:43]
+    end else if (32'h13 == _T_11) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 54:56]
+      if (3'h6 == Addi_io_targetRegister[2:0]) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+        if (!(3'h6 == Addi_io_result[2:0])) begin // @[D:\\ChiselWorkspace\\KonataNPU\\src\\main\\scala\\com\\konatalin\\npu\\core\\utils\\Cpu.scala 64:58]
+          registerGroup_6 <= _GEN_33;
+        end
+      end
+    end
+  end
+// Register and memory initialization
+`ifdef RANDOMIZE_GARBAGE_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_INVALID_ASSIGN
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_REG_INIT
+`define RANDOMIZE
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+`define RANDOMIZE
+`endif
+`ifndef RANDOM
+`define RANDOM $random
+`endif
+`ifdef RANDOMIZE_MEM_INIT
+  integer initvar;
+`endif
+`ifndef SYNTHESIS
+`ifdef FIRRTL_BEFORE_INITIAL
+`FIRRTL_BEFORE_INITIAL
+`endif
+initial begin
+  `ifdef RANDOMIZE
+    `ifdef INIT_RANDOM
+      `INIT_RANDOM
+    `endif
+    `ifndef VERILATOR
+      `ifdef RANDOMIZE_DELAY
+        #`RANDOMIZE_DELAY begin end
+      `else
+        #0.002 begin end
+      `endif
+    `endif
+`ifdef RANDOMIZE_REG_INIT
+  _RAND_0 = {1{`RANDOM}};
+  registerGroup_0 = _RAND_0[31:0];
+  _RAND_1 = {1{`RANDOM}};
+  registerGroup_1 = _RAND_1[31:0];
+  _RAND_2 = {1{`RANDOM}};
+  registerGroup_2 = _RAND_2[31:0];
+  _RAND_3 = {1{`RANDOM}};
+  registerGroup_3 = _RAND_3[31:0];
+  _RAND_4 = {1{`RANDOM}};
+  registerGroup_4 = _RAND_4[31:0];
+  _RAND_5 = {1{`RANDOM}};
+  registerGroup_5 = _RAND_5[31:0];
+  _RAND_6 = {1{`RANDOM}};
+  registerGroup_6 = _RAND_6[31:0];
+`endif // RANDOMIZE_REG_INIT
+  `endif // RANDOMIZE
+end // initial
+`ifdef FIRRTL_AFTER_INITIAL
+`FIRRTL_AFTER_INITIAL
+`endif
+`endif // SYNTHESIS
+endmodule
