@@ -13,7 +13,7 @@ object KonataCore {
      /** determine how long pc will jump per clk */
      val PC_JUMP = 4;
      /** the head of pc */
-     val PC_BEGIN_POSITION = 0x80000000;
+     val PC_BEGIN_POSITION : String = "b01000000000000000000000000000000"; //0x80000000
      /** size of instruction memory */
      val MEM_INST_SIZE = 1024
      /** size of rs1 rs2 rd */

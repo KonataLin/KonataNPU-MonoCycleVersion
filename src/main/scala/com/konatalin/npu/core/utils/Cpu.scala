@@ -16,6 +16,11 @@ import com.konatalin.npu.core.instructions.reflect.KonataInstructionCenter
 
 class InstructionBundle extends Bundle {
      val inst = Input(UInt(KonataCore.REGISTER_WIDTH.W))
+
+     /**
+      * 由于分块管理，这个pc可能要被删掉，这里只是方便测试。
+      */
+     val pc = Output(UInt(KonataCore.ADDRESS_WIDTH.W))
 }
 
 @instantiable
@@ -23,6 +28,8 @@ class Cpu extends Module {
      val io = IO(new InstructionBundle)
      val registerGroup = dontTouch(RegInit(VecInit(Seq.fill(2 ^ KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH)
            (0.U(KonataCore.REGISTER_WIDTH.W)))))
+     val pcCounterMain = RegInit(UInt(KonataCore.ADDRESS_WIDTH.W),
+          KonataCore.PC_BEGIN_POSITION.U(KonataCore.ADDRESS_WIDTH.W));
 
      /** Invoke for cmds */
 
@@ -69,6 +76,9 @@ class Cpu extends Module {
      }
 
 
+
+     pcCounterMain := pcCounterMain + KonataCore.PC_JUMP.U
+     io.pc := pcCounterMain
 }
 object InstructionDecodeFactory_App extends App {
      emitVerilog(new Cpu)
