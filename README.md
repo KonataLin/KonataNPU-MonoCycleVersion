@@ -2,4 +2,11 @@
 
 # KonataNPU-MonoCycleVersion
 
-单周期NPU  RISCV ISA
+MonoCycle NPU / Based on Riscv isa
+
+You can freely add your own instruction as it is a complete frame
+
+
+## Preparation
+
+Remember that the instruction **_"ebreak"_**  is **_Based on verilator(DPI-C)_**.
