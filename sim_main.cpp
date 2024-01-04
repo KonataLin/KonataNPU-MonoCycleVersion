@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
   
     cpu -> io_inst = 0b00000000001100001000000010010011;
   
-    while (!contextp->gotFinish()) {
+    while (!contextp -> gotFinish()) {
 	cpu -> io_inst = 0b00000000001100001000000010010011;  //addi instruction at here
         single_cycle(cpu);
 	    
