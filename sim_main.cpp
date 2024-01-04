@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
   
     Vcpu* cpu = new Vcpu{contextp};
   
-	  printf("[Info] Reseting cpu\n");
+    printf("[Info] Reseting cpu\n");
   
     reset(10, cpu);
   
