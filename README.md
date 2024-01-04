@@ -2,7 +2,7 @@
 
 # KonataNPU-MonoCycleVersion
 
-MonoCycle NPU / Based on Riscv isa
+MonoCycle NPU / Based on Riscv ISA
 
 You can freely add your own instruction as it is a complete frame
 
