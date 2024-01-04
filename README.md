@@ -6,6 +6,8 @@ MonoCycle NPU / Based on Riscv ISA
 
 You can freely add your own instruction as it is a complete frame
 
+*run com/konatalin/npu/core/utils/Cpu.scala in order to gen a instruction test verilog file..*
+
 
 ## Preparation
 
