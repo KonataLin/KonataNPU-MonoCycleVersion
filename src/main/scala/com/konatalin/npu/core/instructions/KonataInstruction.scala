@@ -9,14 +9,19 @@ import com.konatalin.npu.KonataCore
  * @author Konata_Lin
  * @version 1.0.0-SNAPSHOT
  */
-abstract class KonataInstruction(registerGroup: Vec[UInt]) extends Module {
+abstract class KonataInstruction extends Module {
   val io = IO(new InstructionIO)
+  io.result := 0.U
+  io.targetRegister := 0.U
+  io.jmp := false.B
+  io.nextPC := 0.U
 }
 class InstructionIO extends Bundle {
   val rs1 = Input(UInt(KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH.W))
   val rs2 = Input(UInt(KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH.W))
-  val rd = Input(UInt(KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH.W))
+  val rd =  Input(UInt(KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH.W))
   val imm = Input(UInt(KonataCore.REGISTER_WIDTH.W))
+  val MATCH_SIGNAL = Input(Bool())
 
 
   /**

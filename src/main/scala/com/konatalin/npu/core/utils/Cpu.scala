@@ -26,24 +26,31 @@ class InstructionBundle extends Bundle {
 @instantiable
 class Cpu extends Module {
      val io = IO(new InstructionBundle)
-     val registerGroup = dontTouch(RegInit(VecInit(Seq.fill(2 ^ KonataCore.REGISTER_SOURCE_DISTANCE_WIDTH)
+     val registerGroup = dontTouch(RegInit(VecInit(Seq.fill(32)
            (0.U(KonataCore.REGISTER_WIDTH.W)))))
      val pcCounterMain = RegInit(UInt(KonataCore.ADDRESS_WIDTH.W),
           KonataCore.PC_BEGIN_POSITION.U(KonataCore.ADDRESS_WIDTH.W));
 
+     if (KonataCore.DEBUG_ON_REIGSTER_GROUP) {
+          printf(cf"Value: $registerGroup(1) \n")
+     }
      /** Invoke for cmds */
 
-     RegisterTree.register(registerGroup)
+     RegisterTree.register()
 
      for ((bag, dos) <- KonataInstructionCenter.hashMap) {
+          if (KonataCore.DEBUG_CODEGEN) {
+               println(bag.pattern)
+          }
           dos.io.rs1 := registerGroup(io.inst(KonataCore.LEFT_BOUNDARY_OF_RS1
                , KonataCore.RIGHT_BOUNDARY_OF_RS1))
 
           dos.io.rs2 := registerGroup(io.inst(KonataCore.LEFT_BOUNDARY_OF_RS2
                , KonataCore.RIGHT_BOUNDARY_OF_RS2))
 
-          dos.io.rd := registerGroup(io.inst(KonataCore.LEFT_BOUNDARY_OF_RD
-               , KonataCore.RIGHT_BOUNDARY_OF_RD))
+          dos.io.rd := io.inst(KonataCore.LEFT_BOUNDARY_OF_RD
+               , KonataCore.RIGHT_BOUNDARY_OF_RD)
+          dos.io.MATCH_SIGNAL := false.B
           if (bag.instructionType == InstructionType.B_TYPE) {
                dos.io.imm := Cat(Fill(20, io.inst(31)), io.inst(7), io.inst(30, 25), io.inst(11, 8), 0.U(1.W))
           } else if (bag.instructionType == InstructionType.U_TYPE) {
@@ -59,6 +66,7 @@ class Cpu extends Module {
           }
 
           when (io.inst === BitPat("b" + bag.pattern)) {
+               dos.io.MATCH_SIGNAL := true.B
                if (bag.instructionType == InstructionType.B_TYPE) {
 
                } else if (bag.instructionType == InstructionType.U_TYPE) {
@@ -66,9 +74,9 @@ class Cpu extends Module {
                } else if (bag.instructionType == InstructionType.S_TYPE) {
 
                } else if (bag.instructionType == InstructionType.R_TYPE) {
-                    registerGroup(dos.io.targetRegister) := registerGroup(dos.io.result)
+                    registerGroup(dos.io.targetRegister) := dos.io.result
                } else if (bag.instructionType == InstructionType.I_TYPE) {
-                    registerGroup(dos.io.targetRegister) := registerGroup(dos.io.result)
+                    registerGroup(dos.io.targetRegister) := dos.io.result
                } else if (bag.instructionType == InstructionType.J_TYPE) {
 
                }
@@ -80,6 +88,6 @@ class Cpu extends Module {
      pcCounterMain := pcCounterMain + KonataCore.PC_JUMP.U
      io.pc := pcCounterMain
 }
-object InstructionDecodeFactory_App extends App {
+object EmitCpuProgrammer_App extends App {
      emitVerilog(new Cpu)
 }

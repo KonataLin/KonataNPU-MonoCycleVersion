@@ -31,4 +31,14 @@ object KonataCore {
      val RIGHT_BOUNDARY_OF_RD = 7
 
 
+     /**
+      * Debug Settings
+      */
+     val DEBUG_CODEGEN = false;
+
+     val DEBUG_ON_REIGSTER_GROUP = false;
+
+     val DEBUG_ON_ADDI = false;
+
+     val DEBUG_ON_EBREAK = false;
 }

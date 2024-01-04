@@ -1,5 +1,5 @@
 import "DPI-C" function void ebreak();
-module our(
+module EBreak(
 	input wire clk,
 	input wire [1:0] signal
 );
