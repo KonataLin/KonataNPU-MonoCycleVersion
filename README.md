@@ -1,4 +1,4 @@
-![ ](https://img.shields.io/badge/author-LocyDragon-blue)        ![ ](https://img.shields.io/badge/license-GPL3-yellow)     ![ ](https://img.shields.io/badge/build-passed-green)
+![ ](https://img.shields.io/badge/author-Konata_Lin-blue)        ![ ](https://img.shields.io/badge/license-GPL3-yellow)     ![ ](https://img.shields.io/badge/build-passed-green)
 
 # KonataNPU-MonoCycleVersion
 
